@@ -65,11 +65,11 @@ class Dog
     dog = DB[:conn].execute(sql, name, breed).first 
     
     if dog 
-      new_dog = self.new_from_db(dog)
+      newdog = self.new_from_db(dog)
     else 
-      new_dog = self.create({:name => name, :breed => breed})
+      newdog = self.create({:name => name, :breed => breed})
     end
-    new_dog
+    newdog
   end
   
   def self.new_from_db(row)
@@ -95,7 +95,6 @@ class Dog
     sql = <<-SQL
       UPDATE dogs SET name = ?, breed = ? WHERE id = ?
     SQL
-    
     DB[:conn].execute(sql, self.name, self.breed, self.id)
   end
   
